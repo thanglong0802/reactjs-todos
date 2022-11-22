@@ -14,14 +14,45 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: #339966;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: top;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: black;
+  padding-top: 100px;
+  font-size: 80px;
+}
+
+.aligned {
+  display: flex;
+  align-items: center;
+}
+
+.aligned img {
+  width: 60px;
+  cursor: pointer;
+}
+
+.aligned input {
+  height: 50px;
+  width: 500px;
+  border-radius: 1rem;
+}
+
+.ul-tasks ul {
+  margin-top: 0px;
+  list-style-type: none;
+  word-wrap: break-word;
+}
+
+.ul-tasks ul li {
+  font-size: 25px;
+  max-width: 458px;
+  text-align: left;
+  margin-left: 14px;
 }
 
 .App-link {
