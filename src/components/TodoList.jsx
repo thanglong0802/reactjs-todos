@@ -1,38 +1,43 @@
 import React, { Component } from "react";
-// import Todo from "./Todo";
 
 class TodoList extends Component {
-  constructor(props) {
-    super(props);
-    console.log(props);
-    this.state = {
-      changeInput: "",
-    };
-  }
-
-  onChange = (e) => {
-    const changeValue = e.target.value;
-    // console.log(changeValue);
-    this.setState({ changeInput: changeValue });
-    // console.log(changeValue);
-  };
-
-  onClick = () => {
-    const { onChange } = this.props;
-    onChange(this.state.changeInput);
-  };
-
   render() {
-    // console.log(this.state.changeInput);
+    const { todos } = this.props;
     return (
-      <div className="TodoList">
-        <input
-          type="text"
-          value={this.state.changeInput}
-          onChange={this.onChange}
-        />
-        <button onClick={this.onClick}></button>
-      </div>
+      <section>
+        <div style={{ textAlign: "center" }}>
+          {todos.map((todo, index) => {
+            return (
+              <div>
+                <input
+                  type="text"
+                  className=""
+                  value={todo.name}
+                  onChange={(event) => event.defaultPrevented()}
+                  style={{
+                    width: "300px",
+                    borderRadius: "",
+                    borderColor: "transparent",
+                    borderBottomColor: "black",
+                    color: todo.isComplete ? "#969494" : "black",
+                    textDecoration: todo.isComplete ? "line-through" : "none",
+                  }}
+                />
+                <button
+                  onClick={() =>
+                    this.props.completeTodo(todo.id, todo.isComplete)
+                  }
+                >
+                  Completed
+                </button>
+                <button onClick={() => this.props.deleteTodo(todo.id)}>
+                  Delete
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      </section>
     );
   }
 }

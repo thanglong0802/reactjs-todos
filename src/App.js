@@ -1,44 +1,80 @@
-import React from "react";
-import Todo from "./components/Todo";
+import React, { Component } from "react";
+import Header from "./components/Header";
+import FormInput from "./components/FormInput";
 import TodoList from "./components/TodoList";
 
-import "./css/style.css";
+import "./App.css";
 
-class App extends React.Component {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      valueList: [],
+      todos: [],
+      // completed: 0,
     };
   }
 
-  onChangeValue = (valueInput1) => {
-    // console.log("Text", valueInput1);
-    // this.setState({
-    //   valueInput:
-    // })
-    // const newListItem = [valueInput1];
-    // newListItem.push(...newListItem);
-
+  addTodo = (input) => {
+    let newTodo = {
+      id:
+        this.state.todos.reduce((initValue, element) => {
+          return Math.max(initValue, element.id);
+        }, -1) + 1,
+      name: input,
+      isComplete: false,
+    };
+    let newTodos = [...this.state.todos, newTodo];
+    // let checkActive = newTodos.reduce((activeItem, element) => {
+    //   return activeItem + (!element.isComplete ? 1 : 0);
+    // }, 0);
     this.setState({
-      valueList: [...this.state.valueList, valueInput1],
+      todos: newTodos,
+      // completed: checkActive,
+    });
+  };
+
+  deleteTodo = (todo_id) => {
+    let newTodos = this.state.todos.filter((element) => {
+      return element.id !== todo_id;
+    });
+    // let isComplete = newTodos.reduce((activeItems, element) => {
+    //   return activeItems + (!element.isComplete ? 1 : 0);
+    // });
+    this.setState({
+      todos: newTodos,
+      // isComplete,
+    });
+  };
+
+  completeTodo = (todo_id, isCheck) => {
+    let todos = this.state.todos.map((element) => {
+      if (element.id === todo_id) {
+        element.isComplete = !isCheck;
+      }
+      return element;
+    });
+    this.setState({
+      todos,
     });
   };
 
   render() {
-    console.log(this.state.valueList);
     return (
-      <>
-        <div className="App">
-          <TodoList
-            // value={this.state.valueInput}
-            onChange={this.onChangeValue}
-          />
+      <div className="App">
+        <div className="container">
+          <Header />
+        </div>
+        <div className="form-input">
+          <FormInput addTodo={this.addTodo} />
         </div>
         <div>
-          <Todo value={this.state.valueList} />
+          <TodoList
+            todos={this.state.todos}
+            completeTodo={this.completeTodo}
+            deleteTodo={this.deleteTodo}
+          />
         </div>
-      </>
+      </div>
     );
   }
 }
