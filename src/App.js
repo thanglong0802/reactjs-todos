@@ -24,12 +24,8 @@ class App extends Component {
       isComplete: false,
     };
     let newTodos = [...this.state.todos, newTodo];
-    // let checkActive = newTodos.reduce((activeItem, element) => {
-    //   return activeItem + (!element.isComplete ? 1 : 0);
-    // }, 0);
     this.setState({
       todos: newTodos,
-      // completed: checkActive,
     });
   };
 
@@ -37,12 +33,8 @@ class App extends Component {
     let newTodos = this.state.todos.filter((element) => {
       return element.id !== todo_id;
     });
-    // let isComplete = newTodos.reduce((activeItems, element) => {
-    //   return activeItems + (!element.isComplete ? 1 : 0);
-    // });
     this.setState({
       todos: newTodos,
-      // isComplete,
     });
   };
 
@@ -53,6 +45,9 @@ class App extends Component {
       }
       return element;
     });
+    // let isComplete = newTodos.reduce((activeItems, element) => {
+    //   return activeItems + (!element.isComplete ? 1 : 0);
+    // }, 0);
     this.setState({
       todos,
     });
