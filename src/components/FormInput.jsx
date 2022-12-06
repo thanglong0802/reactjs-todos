@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import "../App.css";
+
 class FormInput extends Component {
   constructor(props) {
     super(props);
@@ -16,17 +18,14 @@ class FormInput extends Component {
 
   onClick = () => {
     const { addTodo } = this.props;
-    if (
-      this.state.input === undefined ||
-      this.state.input === null ||
-      this.state.input.trim() === ""
-    ) {
+    const { input } = this.state;
+    if (!input || input.trim() === "") {
       this.setState({
         input: "",
       });
       return;
     }
-    addTodo(this.state.input.trim());
+    addTodo(input.trim());
     this.setState({
       input: "",
     });
@@ -34,21 +33,19 @@ class FormInput extends Component {
 
   render() {
     return (
-      <div style={{ textAlign: "center" }}>
+      <div className="input-todo">
         <input
           type="text"
-          placeholder="Enter a Todo..."
           className="task-input"
+          placeholder="Enter a Todo..."
           onChange={this.onChangeInput}
           value={this.state.input}
-          style={{
-            width: "300px",
-            backgroundColor: "",
-            borderColor: "transparent",
-            borderBottomColor: "black",
-          }}
         />
-        <button className="btn-add" type="submit" onClick={this.onClick}>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.onClick}
+        >
           Add
         </button>
       </div>

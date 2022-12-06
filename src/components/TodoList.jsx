@@ -1,39 +1,26 @@
 import React, { Component } from "react";
+import Todo from "./Todo";
+
+import "../App.css";
 
 class TodoList extends Component {
   render() {
-    const { todos } = this.props;
+    const { filterTodos, completeTodo, deleteTodo } = this.props;
     return (
-      <section>
-        <div style={{ textAlign: "center" }}>
-          {todos.map((todo, index) => {
+      <section className="todo-list">
+        <div className="todo">
+          {filterTodos.map((todo, index) => {
+            const { id, isComplete, name } = todo;
             return (
-              <div>
-                <input
-                  type="text"
-                  className=""
-                  value={todo.name}
-                  onChange={(event) => event.defaultPrevented()}
-                  style={{
-                    width: "300px",
-                    borderRadius: "",
-                    borderColor: "transparent",
-                    borderBottomColor: "black",
-                    color: todo.isComplete ? "#969494" : "black",
-                    textDecoration: todo.isComplete ? "line-through" : "none",
-                  }}
-                />
-                <button
-                  onClick={() =>
-                    this.props.completeTodo(todo.id, todo.isComplete)
-                  }
-                >
-                  Completed
-                </button>
-                <button onClick={() => this.props.deleteTodo(todo.id)}>
-                  Delete
-                </button>
-              </div>
+              <Todo
+                key={id}
+                index={index}
+                id={id}
+                isComplete={isComplete}
+                name={name}
+                completeTodo={completeTodo}
+                deleteTodo={deleteTodo}
+              />
             );
           })}
         </div>

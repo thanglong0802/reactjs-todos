@@ -1,9 +1,42 @@
 .App {
   line-height: 1.8;
+  text-align: center;
 }
 
-.container {
-  text-align: center;
+.header {
   color: pink;
+  font-size: 50px;
+  font-weight: bold;
   padding-top: 2px;
+}
+
+.input-todo .task-input {
+  width: 300px;
+  border-color: transparent;
+  border-bottom-color: black;
+  border-left-color: greenyellow;
+}
+
+.input-todo .btn-add {
+  margin: 2px;
+}
+
+.show-list input {
+  width: 300px;
+  border-color: transparent;
+  border-bottom-color: black;
+  border-left-color: greenyellow;
+}
+
+.show-list button {
+  margin: 2px;
+}
+
+footer .total-todos i {
+  text-decoration-line: underline;
+  color: chocolate;
+}
+
+footer .button-todos button {
+  margin: 2px;
 }
