@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 
 import "../App.css";
+import TodoList from "./TodoList";
 
 class FormInput extends Component {
   constructor(props) {
@@ -32,6 +33,8 @@ class FormInput extends Component {
   };
 
   render() {
+    const { filterTodos, completeTodo, deleteTodo, editTodo, pageNumber } =
+      this.props;
     return (
       <div className="input-todo">
         <input
@@ -48,6 +51,16 @@ class FormInput extends Component {
         >
           Add
         </button>
+        <div className="input-search">
+          <TodoList
+            input={this.state.input}
+            filterTodos={filterTodos}
+            completeTodo={completeTodo}
+            deleteTodo={deleteTodo}
+            editTodo={editTodo}
+            pageNumber={pageNumber}
+          />
+        </div>
       </div>
     );
   }

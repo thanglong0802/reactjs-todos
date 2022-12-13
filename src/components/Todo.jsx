@@ -2,9 +2,8 @@ import React, { Component } from "react";
 
 class Todo extends Component {
   render() {
-    const { index, id, isComplete, name, completeTodo, deleteTodo } =
+    const { id, isComplete, name, completeTodo, deleteTodo, editTodo } =
       this.props;
-    // console.log(index);
     return (
       <div className="show-list">
         <input
@@ -20,7 +19,7 @@ class Todo extends Component {
         <button
           type="button"
           className="btn btn-success"
-          onClick={() => completeTodo(index, isComplete)}
+          onClick={() => completeTodo(id, isComplete)}
         >
           Completed
         </button>
@@ -30,6 +29,13 @@ class Todo extends Component {
           onClick={() => deleteTodo(id)}
         >
           Delete
+        </button>
+        <button
+          type="button"
+          className="btn btn-warning"
+          onClick={() => editTodo()}
+        >
+          Edit
         </button>
       </div>
     );
