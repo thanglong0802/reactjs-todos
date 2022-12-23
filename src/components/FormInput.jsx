@@ -1,13 +1,14 @@
 import React, { Component } from "react";
 
-import "../App.css";
 import TodoList from "./TodoList";
+import logo from "../images/search.png";
 
 class FormInput extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: "",
+      todoEdit: "",
     };
   }
 
@@ -17,51 +18,128 @@ class FormInput extends Component {
     });
   };
 
-  onClick = () => {
+  onClickAdd = (event) => {
     const { addTodo } = this.props;
     const { input } = this.state;
-    if (!input || input.trim() === "") {
-      this.setState({
-        input: "",
-      });
-      return;
+
+    if (event.key === "Enter") {
+      if (!input || input.trim() === "") {
+        this.setState({
+          input: "",
+        });
+        return;
+      } else {
+        addTodo(input.trim());
+        this.setState({
+          input: "",
+        });
+      }
     }
-    addTodo(input.trim());
+  };
+
+  onClickSearch = () => {
+    const { filterTodos, searchTodos, todos } = this.props;
+    const { input } = this.state;
+    if (!input) {
+      searchTodos(todos);
+    } else {
+      let searchByName = filterTodos.filter((element) => {
+        return element.name.toLowerCase().includes(input);
+      });
+      searchTodos(searchByName);
+    }
+  };
+
+  editTodo = (id) => {
+    const { filterTodos } = this.props;
+    // const updateTodos = [...filterTodos];
+    const update = filterTodos[id].name;
+
     this.setState({
-      input: "",
+      todoEdit: id,
+      input: update,
     });
   };
 
+  // onClickEdit = (id) => {
+  //   const { filterTodos, todos, updateTodo } = this.props;
+  //   const { editTodo } = this.state;
+  //   const updateTodos = [...filterTodos];
+  //   alert("a", editTodo);
+  //   updateTodos[editTodo.id] = {
+  //     id: this.state.todoEdit.id,
+  //     input: this.state.input,
+  //   };
+  //   console.log(updateTodos);
+  //   this.setState({
+  //     todoEdit: id,
+  //   });
+  // };
+
   render() {
-    const { filterTodos, completeTodo, deleteTodo, editTodo, pageNumber } =
-      this.props;
+    const {
+      filterTodos,
+      completeTodo,
+      deleteTodo,
+      pageNumber,
+      updateTodo,
+      renderTotalPage,
+    } = this.props;
+    const { todoEdit } = this.state;
     return (
-      <div className="input-todo">
-        <input
-          type="text"
-          className="task-input"
-          placeholder="Enter a Todo..."
-          onChange={this.onChangeInput}
-          value={this.state.input}
-        />
-        <button
+      <>
+        <div className="search">
+          <img src={logo} alt="search" onClick={this.onClickSearch} />
+          <input
+            type="text"
+            className="new-todo"
+            placeholder="What needs to be done?"
+            onChange={this.onChangeInput}
+            value={this.state.input}
+            onKeyDown={(event) => {
+              if (todoEdit || todoEdit === 0) {
+                updateTodo(todoEdit, this.state.input);
+                this.setState({ input: "", todoEdit: "" });
+              } else {
+                this.onClickAdd(event);
+              }
+            }}
+          />
+        </div>
+        {/* <button
           type="button"
           className="btn btn-primary"
-          onClick={this.onClick}
+          onClick={() => {
+            if (todoEdit || todoEdit === 0) {
+              updateTodo(todoEdit, this.state.input);
+              this.setState({ input: "", todoEdit: "" });
+            } else {
+              this.onClickAdd();
+            }
+          }}
         >
-          Add
-        </button>
-        <div className="input-search">
+          {todoEdit || todoEdit === 0 ? "Edit" : "Add"}
+        </button> */}
+        {/* <button
+          type="button"
+          className="btn btn-primary"
+          onClick={this.onClickSearch}
+        >
+          Search
+        </button> */}
+        <div className="content">
           <TodoList
             input={this.state.input}
             filterTodos={filterTodos}
             completeTodo={completeTodo}
             deleteTodo={deleteTodo}
-            editTodo={editTodo}
+            editTodo={this.editTodo}
             pageNumber={pageNumber}
+            onClickSearch={this.onClickSearch}
+            renderTotalPage={renderTotalPage}
           />
         </div>
-      </div>
+      </>
     );
   }
 }

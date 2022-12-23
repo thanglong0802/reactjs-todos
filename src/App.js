@@ -4,7 +4,7 @@ import FormInput from "./components/FormInput";
 import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
 
-import "./App.css";
+import "./css/style.css";
 import "bootstrap/dist/css/bootstrap.css";
 
 class App extends Component {
@@ -15,6 +15,7 @@ class App extends Component {
       filterTodos: [],
       totalTodos: 0,
       pageNumber: 1,
+      renderTotalPage: 3,
     };
   }
 
@@ -112,6 +113,7 @@ class App extends Component {
     );
     this.setState({
       filterTodos,
+      pageNumber: 1,
     });
   };
 
@@ -119,28 +121,68 @@ class App extends Component {
     this.setState({ pageNumber: number });
   };
 
-  editTodo = () => {
-    console.log("edit");
+  searchTodos = (todo) => {
+    this.setState({
+      filterTodos: todo,
+      pageNumber: 1,
+    });
+  };
+
+  updateTodo = (id, input) => {
+    const { filterTodos } = this.state;
+    const updateTodos = [...filterTodos];
+    updateTodos[id] = {
+      id,
+      name: input,
+    };
+    this.setState({
+      filterTodos: updateTodos,
+    });
+  };
+
+  renderPage = (obj) => {
+    let value = obj.target.value;
+    this.setState({
+      renderTotalPage: parseInt(value),
+      pageNumber: 1,
+    });
   };
 
   render() {
     return (
-      <div className="App">
-        <Header />
-        <FormInput
-          addTodo={this.addTodo}
-          filterTodos={this.state.filterTodos}
-          completeTodo={this.completeTodo}
-          deleteTodo={this.deleteTodo}
-          editTodo={this.editTodo}
-          pageNumber={this.state.pageNumber}
-        />
-        <Footer
-          filterTodos={this.filterTodos}
-          totalTodos={this.state.totalTodos}
-        />
-        <Pagination todos={this.state.todos.length} perPage={this.perPage} />
-      </div>
+      <section className="todo-app">
+        <div id="container">
+          <header className="header">
+            <Header />
+          </header>
+          <section className="main">
+            <FormInput
+              addTodo={this.addTodo}
+              filterTodos={this.state.filterTodos}
+              completeTodo={this.completeTodo}
+              deleteTodo={this.deleteTodo}
+              pageNumber={this.state.pageNumber}
+              searchTodos={this.searchTodos}
+              updateTodo={this.updateTodo}
+              todos={this.state.todos}
+              perPage={this.perPage}
+              renderTotalPage={this.state.renderTotalPage}
+            />
+          </section>
+          <footer className="footer">
+            <Footer
+              filterTodos={this.filterTodos}
+              totalTodos={this.state.totalTodos}
+            />
+            <Pagination
+              filterTodos={this.state.filterTodos.length}
+              perPage={this.perPage}
+              renderTotalPage={this.state.renderTotalPage}
+              renderPage={this.renderPage}
+            />
+          </footer>
+        </div>
+      </section>
     );
   }
 }

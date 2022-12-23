@@ -1,13 +1,13 @@
-.App {
-  line-height: 1.8;
+/* .todo-app {
   text-align: center;
+  height: auto;
 }
 
-.header {
-  color: pink;
-  font-size: 50px;
-  font-weight: bold;
-  padding-top: 2px;
+.header h1 {
+  color: rgba(175, 47, 47, 0.15);
+  font-size: 100px;
+  font-weight: 100;
+  width: 100%;
 }
 
 .input-todo .task-input {
@@ -17,7 +17,7 @@
   border-left-color: greenyellow;
 }
 
-.input-todo .btn-add {
+.input-todo button {
   margin: 2px;
 }
 
@@ -39,4 +39,4 @@ footer .total-todos i {
 
 footer .button-todos button {
   margin: 2px;
-}
+} */

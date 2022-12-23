@@ -6,34 +6,27 @@ class Footer extends Component {
   render() {
     const { filterTodos, totalTodos } = this.props;
     return (
-      <footer>
-        <div className="total-todos">
-          Có <i>{totalTodos}</i> công việc chưa hoàn thành
-        </div>
-        <div className="button-todos">
-          <button
-            type="button"
-            className="btn btn-info"
-            onClick={() => filterTodos("ALL")}
-          >
-            All
-          </button>
-          <button
-            type="button"
-            className="btn btn-warning"
-            onClick={() => filterTodos("INCOMPLETE")}
-          >
-            Incomplete
-          </button>
-          <button
-            type="button"
-            className="btn btn-success"
-            onClick={() => filterTodos("COMPLETE")}
-          >
-            Complete
-          </button>
-        </div>
-      </footer>
+      <div className="foo-footer">
+        <span className="todo-count">
+          <strong>{totalTodos}</strong>
+          <span> </span>
+          <span>items left</span>
+        </span>
+
+        <ul className="filters">
+          <li onClick={() => filterTodos("ALL")}>
+            <a href="#/">All</a>
+          </li>
+          <span> </span>
+          <li onClick={() => filterTodos("INCOMPLETE")}>
+            <a href="#/active">Active</a>
+          </li>
+          <span> </span>
+          <li onClick={() => filterTodos("COMPLETE")}>
+            <a href="#/completed">Completed</a>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
