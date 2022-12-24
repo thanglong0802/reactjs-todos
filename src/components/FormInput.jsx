@@ -60,21 +60,6 @@ class FormInput extends Component {
     });
   };
 
-  // onClickEdit = (id) => {
-  //   const { filterTodos, todos, updateTodo } = this.props;
-  //   const { editTodo } = this.state;
-  //   const updateTodos = [...filterTodos];
-  //   alert("a", editTodo);
-  //   updateTodos[editTodo.id] = {
-  //     id: this.state.todoEdit.id,
-  //     input: this.state.input,
-  //   };
-  //   console.log(updateTodos);
-  //   this.setState({
-  //     todoEdit: id,
-  //   });
-  // };
-
   render() {
     const {
       filterTodos,
