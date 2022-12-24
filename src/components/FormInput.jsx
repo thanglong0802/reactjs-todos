@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-
 import TodoList from "./TodoList";
 import logo from "../images/search.png";
 
@@ -97,11 +96,13 @@ class FormInput extends Component {
             onChange={this.onChangeInput}
             value={this.state.input}
             onKeyDown={(event) => {
-              if (todoEdit || todoEdit === 0) {
-                updateTodo(todoEdit, this.state.input);
-                this.setState({ input: "", todoEdit: "" });
-              } else {
-                this.onClickAdd(event);
+              if (event.key === "Enter") {
+                if (todoEdit || todoEdit === 0) {
+                  updateTodo(todoEdit, this.state.input);
+                  this.setState({ input: "", todoEdit: "" });
+                } else {
+                  this.onClickAdd(event);
+                }
               }
             }}
           />

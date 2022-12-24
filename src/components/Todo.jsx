@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-// import checked from "../images/checked.png";
 import deleted from "../images/delete.png";
 import edit from "../images/edit.png";
 
@@ -23,12 +22,6 @@ class Todo extends Component {
                 textDecoration: isComplete ? "line-through" : "none",
               }}
             />
-            {/* <img
-              src={checked}
-              alt="checked"
-              className="img-thumbnail"
-              onClick={() => completeTodo(id, isComplete)}
-            /> */}
             <img
               src={deleted}
               alt="deleted"

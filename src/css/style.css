@@ -13,11 +13,21 @@ body {
   margin: auto;
 }
 
+#container {
+  width: 700px;
+  margin: 100px auto;
+  background: #fff;
+  /* border: 1px solid #000; */
+  box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
+  border-radius: 8px;
+}
+
 .header h1 {
   width: 100%;
   font-size: 100px;
   text-align: center;
   color: rgba(175, 47, 47, 0.15);
+  margin: 0;
 }
 
 .main {

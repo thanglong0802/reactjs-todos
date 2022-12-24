@@ -4,8 +4,8 @@ import FormInput from "./components/FormInput";
 import Footer from "./components/Footer";
 import Pagination from "./components/Pagination";
 
-import "./css/style.css";
 import "bootstrap/dist/css/bootstrap.css";
+import "./css/style.css";
 
 class App extends Component {
   constructor(props) {
@@ -136,6 +136,7 @@ class App extends Component {
       name: input,
     };
     this.setState({
+      todos: updateTodos,
       filterTodos: updateTodos,
     });
   };
