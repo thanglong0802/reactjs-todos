@@ -9,13 +9,21 @@ class Pagination extends Component {
     }
     const renderPageNumbers = pageNumbers.map((number) => {
       return (
-        <button
-          key={number}
-          className="onClickChangeColor"
-          onClick={() => perPage(number)}
-        >
-          {number}
-        </button>
+        <div className="render-page">
+          <nav aria-label="Page navigation example">
+            <ul className="pagination">
+              <li
+                key={number}
+                className="page-item"
+                onClick={() => perPage(number)}
+              >
+                <a className="page-link" href="#Page">
+                  {number}
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
       );
     });
     return (

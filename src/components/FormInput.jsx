@@ -73,7 +73,12 @@ class FormInput extends Component {
     return (
       <>
         <div className="search">
-          <img src={logo} alt="search" onClick={this.onClickSearch} />
+          <img
+            src={logo}
+            alt="search"
+            className="img-thumbnail"
+            onClick={this.onClickSearch}
+          />
           <input
             type="text"
             className="new-todo"

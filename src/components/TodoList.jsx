@@ -12,8 +12,8 @@ class TodoList extends Component {
       renderTotalPage,
     } = this.props;
     return (
-      <section className="todo-list">
-        <div className="todo">
+      <section className="section-todo">
+        <ul className="ul-todo">
           {filterTodos.map((todo, index) => {
             const { id, isComplete, name } = todo;
             if (
@@ -35,7 +35,7 @@ class TodoList extends Component {
             }
             return null;
           })}
-        </div>
+        </ul>
       </section>
     );
   }

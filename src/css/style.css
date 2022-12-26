@@ -17,7 +17,6 @@ body {
   width: 700px;
   margin: 100px auto;
   background: #fff;
-  /* border: 1px solid #000; */
   box-shadow: 0 2px 4px 0 rgb(0 0 0 / 20%), 0 25px 50px 0 rgb(0 0 0 / 10%);
   border-radius: 8px;
 }
@@ -37,16 +36,16 @@ body {
 
 .main .search {
   display: flex;
-  /* align-items: center; */
-  /* border: 1px solid #ff9600; */
   position: relative;
+  border-bottom: 1px solid #ededed;
 }
 
 .main .search img {
-  width: 50px;
+  /* width: 50px; */
+  height: 40px;
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 6px;
+  left: 1px;
   bottom: 0;
 }
 
@@ -59,7 +58,6 @@ body {
   height: 50px;
   border: none;
   background: rgba(0, 0, 0, 0.003);
-  /* box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%); */
   color: #4d4d4d;
   font-size: 24px;
   box-sizing: border-box;
@@ -74,43 +72,58 @@ body {
   display: flex;
 }
 
-.main .content .todo-list {
-  list-style: none;
+.main .content .section-todo {
   display: flex;
+  flex: 1;
   margin: 0;
   padding: 0;
 }
 
-.main .content .todo-list li {
+.section-todo .ul-todo {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.main .content .section-todo .li-todo {
   font-size: 24px;
+  display: flex;
+  flex: 1;
+  border-bottom: 1px solid #ededed;
 }
 
-.todo-list .todo {
-  /* width: 400px; */
-  /* border-bottom: 1px solid #ff9600; */
+.section-todo .todo {
   box-sizing: border-box;
+  display: flex;
+  flex: 1;
 }
 
-.todo-list .todo input {
-  padding: 16px;
+.section-todo .img-thumbnail.img-checked {
+  margin-left: 1px;
+}
+
+.section-todo .todo input {
+  padding: 16px 16px 16px 40px;
   border: none;
   background: rgba(0, 0, 0, 0.003);
-  /* box-shadow: inset 0 -2px 1px rgb(0 0 0 / 3%); */
-  font-size: 24px;
-  margin-top: 5px;
-  border-left: 1px solid #ff9600;
+  color: #4d4d4d;
+  flex: 1;
 }
 
-.todo-list .todo input:hover {
-  cursor: pointer;
+.section-todo .todo input:focus {
+  outline: none;
 }
 
-.todo-list .todo img {
+.section-todo .todo img {
   height: 30px;
-  margin: auto 5px;
+  margin: auto;
+  padding: 0;
 }
 
-.todo-list .todo:hover img {
+.section-todo .todo:hover img {
   cursor: pointer;
 }
 
@@ -125,10 +138,6 @@ body {
 .foo-footer {
   display: flex;
 }
-
-/* .foo-footer .todo-count {
-  margin-right: 50px;
-} */
 
 .filters {
   list-style: none;
@@ -152,15 +161,14 @@ body {
 
 .pagination-number {
   display: flex;
-  justify-content: space-around;
   align-items: center;
 }
 
 .pagination-number .number-of-line {
-  margin: 10px 25px;
+  margin: 0 25px;
 }
 
 .pagination-number .page {
-  font-size: 20px;
-  width: 33px;
+  display: flex;
+  margin-top: 15px;
 }
