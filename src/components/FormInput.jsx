@@ -68,8 +68,11 @@ class FormInput extends Component {
       pageNumber,
       updateTodo,
       renderTotalPage,
+      limit,
+      page,
+      nextPage,
     } = this.props;
-    const { todoEdit } = this.state;
+    const { input, todoEdit } = this.state;
     return (
       <>
         <div className="search">
@@ -84,11 +87,11 @@ class FormInput extends Component {
             className="new-todo"
             placeholder="What needs to be done?"
             onChange={this.onChangeInput}
-            value={this.state.input}
+            value={input}
             onKeyDown={(event) => {
               if (event.key === "Enter") {
                 if (todoEdit || todoEdit === 0) {
-                  updateTodo(todoEdit, this.state.input);
+                  updateTodo(todoEdit, input);
                   this.setState({ input: "", todoEdit: "" });
                 } else {
                   this.onClickAdd(event);
@@ -120,7 +123,7 @@ class FormInput extends Component {
         </button> */}
         <div className="content">
           <TodoList
-            input={this.state.input}
+            input={input}
             filterTodos={filterTodos}
             completeTodo={completeTodo}
             deleteTodo={deleteTodo}
@@ -128,6 +131,9 @@ class FormInput extends Component {
             pageNumber={pageNumber}
             onClickSearch={this.onClickSearch}
             renderTotalPage={renderTotalPage}
+            limit={limit}
+            page={page}
+            nextPage={nextPage}
           />
         </div>
       </>

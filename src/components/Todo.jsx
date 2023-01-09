@@ -8,6 +8,7 @@ class Todo extends Component {
   render() {
     const { id, isComplete, name, completeTodo, deleteTodo, editTodo } =
       this.props;
+
     return (
       <li className="li-todo">
         <div className="todo">

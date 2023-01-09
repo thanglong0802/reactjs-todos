@@ -16,8 +16,16 @@ class App extends Component {
       totalTodos: 0,
       pageNumber: 1,
       renderTotalPage: 3,
+      limit: 5,
+      page: 1,
     };
   }
+
+  nextPage = () => {
+    this.setState((state) => ({
+      page: state.page + 1,
+    }));
+  };
 
   addTodo = (input) => {
     const { todos } = this.state;
@@ -150,6 +158,16 @@ class App extends Component {
   };
 
   render() {
+    const {
+      filterTodos,
+      pageNumber,
+      todos,
+      renderTotalPage,
+      totalTodos,
+      limit,
+      page,
+    } = this.state;
+    console.log(page);
     return (
       <section className="todo-app">
         <div id="container">
@@ -159,26 +177,26 @@ class App extends Component {
           <section className="main">
             <FormInput
               addTodo={this.addTodo}
-              filterTodos={this.state.filterTodos}
+              filterTodos={filterTodos}
               completeTodo={this.completeTodo}
               deleteTodo={this.deleteTodo}
-              pageNumber={this.state.pageNumber}
+              pageNumber={pageNumber}
               searchTodos={this.searchTodos}
               updateTodo={this.updateTodo}
-              todos={this.state.todos}
+              todos={todos}
               perPage={this.perPage}
-              renderTotalPage={this.state.renderTotalPage}
+              renderTotalPage={renderTotalPage}
+              limit={limit}
+              page={page}
+              nextPage={this.nextPage}
             />
           </section>
           <footer className="footer">
-            <Footer
-              filterTodos={this.filterTodos}
-              totalTodos={this.state.totalTodos}
-            />
+            <Footer filterTodos={this.filterTodos} totalTodos={totalTodos} />
             <Pagination
-              filterTodos={this.state.filterTodos.length}
+              filterTodos={filterTodos.length}
               perPage={this.perPage}
-              renderTotalPage={this.state.renderTotalPage}
+              renderTotalPage={renderTotalPage}
               renderPage={this.renderPage}
             />
           </footer>
